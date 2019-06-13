@@ -1,9 +1,9 @@
 public class LinkedListDeque<T> {
 
-    public class Node{
-        public T item;
-        public Node prev;
-        public Node next;
+    public class Node {
+        private T item;
+        private Node prev;
+        private Node next;
 
         public Node(Node m, T i, Node n) {
             item = i;
@@ -114,7 +114,7 @@ public class LinkedListDeque<T> {
     public T get(int index) {
         int iindex = 0;
         Node currentnode = sentinel;
-        while(iindex < index) {
+        while (iindex < index) {
             if (currentnode.next == sentinel) {
                 return null;
             }
