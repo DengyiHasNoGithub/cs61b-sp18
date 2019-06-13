@@ -125,10 +125,10 @@ public class LinkedListDeque<T> {
     }
 
     /** Gets the items at the given index using recursion. */
-    public T getRecursive(int index) {
+    /**public T getRecursive(int index) {
         if (index == 0 || sentinel.next.next == sentinel) {
             return sentinel.next.item;
         }
         return next.getRecursive(index - 1);
-    }
+    }*/
 }
