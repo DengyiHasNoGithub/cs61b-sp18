@@ -5,6 +5,10 @@ public class LinkedListDeque<T> {
         private Node prev;
         private Node next;
 
+        public Node(T i) {
+            item = i;
+        }
+
         public Node(Node m, T i, Node n) {
             item = i;
             prev = m;
@@ -18,21 +22,14 @@ public class LinkedListDeque<T> {
 
     /** Creates an empty list. */
     public LinkedListDeque() {
-        sentinel = new Node(null, null, null);
+        sentinel = new Node(null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
     }
 
-    public LinkedListDeque(T x) {
-        sentinel = new Node(null, null, null);
-        sentinel.next = new Node(sentinel, x, sentinel);
-        sentinel.prev = sentinel.next;
-        size = 1;
-    }
-
     /** Creates a deep copy of other. */
-    public LinkedListDeque(LinkedListDeque other) {
+    /** public LinkedListDeque(LinkedListDeque other) {
         sentinel = new Node(null, null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
@@ -41,15 +38,22 @@ public class LinkedListDeque<T> {
         for (int i = 0; i < other.size; i++) {
             addLast((T) other.get(i));
         }
+    }*/
+
+    /** Helper for creating a deep copy. */
+    private LinkedListDeque copy(LinkedListDeque other) {
+        LinkedListDeque result = new LinkedListDeque();
+        for (int i = 1; i <= other.size; i++) {
+            result.addLast(other.get(i));
+        }
+        return result;
     }
 
     /** Adds x to the front of the list. */
     public void addFirst(T x) {
         Node newnode = new Node(sentinel, x, sentinel.next);
         sentinel.next = newnode;
-        if (sentinel.next.next == sentinel) {
-            sentinel.prev = newnode;
-        }
+        newnode.next.prev = newnode;
         size += 1;
     }
 
@@ -66,10 +70,7 @@ public class LinkedListDeque<T> {
 
     /** Returns true if the deque is empty, false otherwise. */
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
+        return (size == 0);
     }
 
     /** Returns the number of items in the deque. */
@@ -90,11 +91,12 @@ public class LinkedListDeque<T> {
 
     /** Removes and return the item at the front of the deque. */
     public T removeFirst() {
-        if (sentinel.next == null) {
+        if (sentinel.prev == null) {
             return null;
         }
         T temp = sentinel.next.item;
         sentinel.next = sentinel.next.next;
+        sentinel.next.prev = sentinel;
         size -= 1;
         return temp;
     }
@@ -106,6 +108,7 @@ public class LinkedListDeque<T> {
         }
         T temp = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
+        sentinel.prev.next = sentinel;
         size -= 1;
         return temp;
     }
@@ -124,11 +127,13 @@ public class LinkedListDeque<T> {
         return currentnode.item;
     }
 
-    /** Gets the items at the given index using recursion. 
+    /** Gets the items at the given index using recursion. */
     public T getRecursive(int index) {
-        if (index == 0 || sentinel.next.next == sentinel) {
+        if (index == 0) {
             return sentinel.next.item;
         }
-        return getRecursive(index - 1);
-    }*/
+        LinkedListDeque copyD = copy(this);
+        copyD.removeFirst();
+        return (T) copyD.getRecursive(index - 1);
+    }
 }

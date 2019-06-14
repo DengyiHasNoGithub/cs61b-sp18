@@ -98,6 +98,10 @@ public class ArrayDeque<T> {
             resize(size * RFACTOR);
         }
 
+        if (size == 0) {
+            return null;
+        }
+
         int i = addOne(nextFirst);
 
         T temp = items[i];
@@ -113,6 +117,10 @@ public class ArrayDeque<T> {
             resize(size * RFACTOR);
         }
 
+        if (size == 0) {
+            return null;
+        }
+
         int i = minusOne(nextLast);
 
         T temp = items[i];
@@ -124,6 +132,10 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        return items[index];
+        int i = addOne(nextFirst);
+        for (int j = 0; j < index - 1; j++) {
+            i = addOne(i);
+        }
+        return items[i];
     }
 }
