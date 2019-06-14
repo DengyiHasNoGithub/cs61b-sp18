@@ -91,7 +91,7 @@ public class LinkedListDeque<T> {
 
     /** Removes and return the item at the front of the deque. */
     public T removeFirst() {
-        if (sentinel.prev == null) {
+        if (isEmpty()) {
             return null;
         }
         T temp = sentinel.next.item;
@@ -103,7 +103,7 @@ public class LinkedListDeque<T> {
 
     /** Removes and returns the items at the back of the deque. */
     public T removeLast() {
-        if (sentinel.prev == null) {
+        if (isEmpty()) {
             return null;
         }
         T temp = sentinel.prev.item;
@@ -117,7 +117,7 @@ public class LinkedListDeque<T> {
     public T get(int index) {
         int iindex = 0;
         Node currentnode = sentinel;
-        while (iindex < index) {
+        while (iindex <= index) {
             if (currentnode.next == sentinel) {
                 return null;
             }

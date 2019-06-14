@@ -94,11 +94,11 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (size >= 0.25 * items.length && items.length >= 16) {
+        if (size <= 0.25 * items.length && items.length >= 16) {
             resize(size * RFACTOR);
         }
 
-        if (size == 0) {
+        if (isEmpty()) {
             return null;
         }
 
@@ -113,7 +113,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (size >= 0.25 * items.length && items.length >= 16) {
+        if (size <= 0.25 * items.length && items.length >= 16) {
             resize(size * RFACTOR);
         }
 
@@ -133,7 +133,7 @@ public class ArrayDeque<T> {
 
     public T get(int index) {
         int i = addOne(nextFirst);
-        for (int j = 0; j < index - 1; j++) {
+        for (int j = 0; j < index; j++) {
             i = addOne(i);
         }
         return items[i];

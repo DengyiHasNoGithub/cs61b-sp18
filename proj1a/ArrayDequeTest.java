@@ -87,7 +87,7 @@ public class ArrayDequeTest {
         ad1.addFirst(2);
         ad1.addFirst(5);
 
-        System.out.println(ad1.get(3));
+        System.out.println(ad1.get(0));
 
         /*ad1.removeLast();
         // should not be empty
