@@ -62,12 +62,11 @@ public class ArrayDequeTest {
 
     }
 
-    /** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
+    /** Adds an item, then removes an item,
+     * and ensures that dll is empty afterwards. */
     public static void addRemoveTest() {
 
         System.out.println("Running add/remove test.");
-
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         ArrayDeque<Integer> ad1 = new ArrayDeque<>();
         // should be empty

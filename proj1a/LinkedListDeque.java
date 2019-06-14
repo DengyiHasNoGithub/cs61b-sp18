@@ -43,7 +43,7 @@ public class LinkedListDeque<T> {
     /** Helper for creating a deep copy. */
     private LinkedListDeque copy(LinkedListDeque other) {
         LinkedListDeque result = new LinkedListDeque();
-        for (int i = 1; i <= other.size; i++) {
+        for (int i = 0; i < other.size; i++) {
             result.addLast(other.get(i));
         }
         return result;
