@@ -29,7 +29,6 @@ public class TestArrayDequeGold {
             if (!stdFirst.equals(solFirst)) {
                 message += "removeFirst()";
                 assertEquals(message, solFirst, stdFirst);
-                return;
             }
 
             std.addFirst(stdFirst);
@@ -44,7 +43,6 @@ public class TestArrayDequeGold {
             if (!stdLast.equals(solLast)) {
                 message += "removeLast()";
                 assertEquals(message, solLast, stdLast);
-                return;
             }
             std.addLast(stdLast);
             sol.addLast(solLast);
